@@ -18,24 +18,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
 
     @IBAction func saveToAPI(_ sender: Any) {
         //TODO: create a Repository object needed to invoke the API's create method at http://216.186.69.45/services/device/users/
-        let userRepo = 
+        let musicRepo = MusicRepository<Music>(withPath: "https://www.orangevalleycaa.org/api/music");
         
-        let newUser = User()
-        newUser.FirstName = firstName.text
-        newUser.LastName = lastName.text
-        newUser.PhoneNumber = phoneNumber.text
-        newUser.SID = sid.text
         
-        userRepo.create(a: newUser)  { (user) in
-            if let id = user?.UserID, let first = user?.FirstName, let last = user?.LastName {
-                self.resultInfo.text = "Successfully create user \(first) \(last) with id \(id)"
-            }
+        let newMusic = Music()
+        newMusic.id = 10
+        newMusic.name = firstName.text
+        newMusic.description = lastName.text
+        
+        musicRepo.create(a: newMusic)
         }
     }
     
-}
+
 
